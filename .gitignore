@@ -23,4 +23,6 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 
+phpstan.neon
+
 Laravel SSO Application - DDD Architecture Specification.pdf

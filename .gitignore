@@ -25,4 +25,6 @@ Thumbs.db
 
 phpstan.neon
 
+notes.md
+
 Laravel SSO Application - DDD Architecture Specification.pdf

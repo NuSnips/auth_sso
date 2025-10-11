@@ -32,6 +32,11 @@ class UserId
         return $this->id === $userId;
     }
 
+    public function value(): string
+    {
+        return $this->id;
+    }
+
     public function __toString(): string
     {
         return $this->id;

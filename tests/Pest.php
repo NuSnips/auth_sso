@@ -11,9 +11,11 @@
 |
 */
 
+use PHPUnit\Framework\Assert;
+
 pest()->extend(Tests\TestCase::class)
- // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->in('Feature');
+    // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
+    ->in('Feature', 'Unit');
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,11 @@ pest()->extend(Tests\TestCase::class)
 
 expect()->extend('toBeOne', function () {
     return $this->toBe(1);
+});
+
+expect()->extend('toEqualIgnoreCase', function (string $expected) {
+    Assert::assertEqualsIgnoringCase($expected, $this->value);
+    return $this;
 });
 
 /*

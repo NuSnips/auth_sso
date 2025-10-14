@@ -21,11 +21,11 @@ final readonly class FullName
 
     public static function validate(string $first, string $last)
     {
-        if (strcasecmp($first, $last) === 0) {
-            throw new InvalidArgumentException("First and last name cannot be the same.");
-        }
         if ($first === "" || $last === "") {
             throw new InvalidArgumentException("First and last name cannot be empty.");
+        }
+        if (strcasecmp($first, $last) === 0) {
+            throw new InvalidArgumentException("First and last name cannot be the same.");
         }
     }
 

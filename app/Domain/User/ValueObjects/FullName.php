@@ -2,19 +2,37 @@
 
 namespace App\Domain\User\ValueObjects;
 
-class FullName
+use InvalidArgumentException;
+
+final readonly class FullName
 {
-    public function __construct(private string $first, private string $last) {}
+    private string $first;
+    private string $last;
+    public function __construct(string $first,  string $last)
+    {
+        $first = strtolower(trim($first));
+        $last = strtolower(trim($last));
+
+        self::validate($first, $last);
+
+        $this->first = $first;
+        $this->last = $last;
+    }
+
+    public static function validate(string $first, string $last)
+    {
+        if (strcasecmp($first, $last) === 0) {
+            throw new InvalidArgumentException("First and last name cannot be the same.");
+        }
+        if ($first === "" || $last === "") {
+            throw new InvalidArgumentException("First and Last name cannot be empty.");
+        }
+    }
 
     public static function fromString(string $first, string $last): FullName
     {
-        if ($first === $last) {
-            throw new \InvalidArgumentException("First and Last name cannot be the same.");
-        }
-        if ($first === "" || $last === "") {
-            throw new \InvalidArgumentException("First and Last name cannot be empty.");
-        }
-        return new FullName($first, $last);
+        self::validate($first, $last);
+        return new self($first, $last);
     }
 
     public function first(): string
@@ -28,6 +46,11 @@ class FullName
     }
 
     public function value(): string
+    {
+        return "{$this->first()} {$this->last}";
+    }
+
+    public function __toString(): string
     {
         return "{$this->first()} {$this->last}";
     }

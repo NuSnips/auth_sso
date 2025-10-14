@@ -10,8 +10,8 @@ final readonly class FullName
     private string $last;
     public function __construct(string $first,  string $last)
     {
-        $first = strtolower(trim($first));
-        $last = strtolower(trim($last));
+        $first = ucwords(strtolower(trim($first)));
+        $last = ucwords(strtolower(trim($last)));
 
         self::validate($first, $last);
 

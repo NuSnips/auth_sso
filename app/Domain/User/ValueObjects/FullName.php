@@ -25,7 +25,7 @@ final readonly class FullName
             throw new InvalidArgumentException("First and last name cannot be the same.");
         }
         if ($first === "" || $last === "") {
-            throw new InvalidArgumentException("First and Last name cannot be empty.");
+            throw new InvalidArgumentException("First and last name cannot be empty.");
         }
     }
 

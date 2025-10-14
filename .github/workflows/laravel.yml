@@ -25,7 +25,7 @@ jobs:
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       
       - name: Cache Composer dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -58,9 +58,9 @@ jobs:
           DB_DATABASE: database/database.sqlite
         run: php artisan test --parallel
       
-      - name: Upload coverage reports (optional)
+      - name: Upload test logs on failure
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: storage/logs/
